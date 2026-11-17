@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجلة انضباطي سر تميزي - ابتدائية ١٨٢</title>
+    <!-- استدعاء خطوط عربية جميلة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        skyLight: '#E0F2FE',
+                        skyBright: '#38BDF8',
+                        skyDeep: '#0284C7',
+                        navyMain: '#1E3A8A',
+                        navyDark: '#0F172A',
+                        goldWarm: '#F59E0B',
+                        goldLight: '#FBBF24',
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'float-delayed': 'float 4s ease-in-out 2s infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                        'pop-in': 'popIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.04)' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'translateY(16px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 50%, #F8FAFC 100%);
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* شريط تمرير مخصص لقائمة الصفحات */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #E0F2FE;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #38BDF8;
+            border-radius: 10px;
+        }
+        /* تأثير 3D ناعم للبطاقات */
+        .card-3d {
+            background: #FFFFFF;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            border: 2px solid rgba(224, 242, 254, 0.9);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .card-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.2);
+            border-color: #38BDF8;
+        }
+        /* إخفاء الصفحات غير النشطة */
+        .mag-page {
+            display: none;
+        }
+        .mag-page.active {
+            display: block;
+            animation: popIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* زخرفة الإطارات للشهادة والميثاق */
+        .ornate-border {
+            background-image: radial-gradient(circle at top right, #E0F2FE 0%, #FFFFFF 35%, #FFFFFF 65%, #FEF3C7 100%);
+            border: 6px double #1E3A8A;
+            box-shadow: inset 0 0 0 4px #38BDF8, 0 15px 35px rgba(30, 58, 138, 0.15);
+        }
+
+        /* إعدادات الطباعة المخصصة للميثاق والشهادة فقط */
+        @media print {
+            body {
+                background: #FFFFFF !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only-container {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 10mm !important;
+                box-shadow: none !important;
+            }
+            .mag-page {
+                display: none !important;
+            }
+            .mag-page.active {
+                display: block !important;
+                animation: none !important;
+            }
+            input {
+                border: none !important;
+                background: transparent !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 10mm;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-skyBright selection:text-white">
+
+    <!-- الشريط العلوي والتنقل وشريط التقدم (لا يظهر عند الطباعة) -->
+    <header class="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b-2 border-skyLight">
+        <!-- شريط التقدم العلوي -->
+        <div class="w-full bg-skyLight h-2.5 overflow-hidden">
+            <div id="top-progress-bar" class="bg-gradient-to-l from-navyMain via-skyDeep to-goldWarm h-full transition-all duration-500 rounded-l-full" style="width: 7.69%;"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <!-- شعار المجلة المصغر -->
+                <button onclick="goToPage(1)" class="flex items-center gap-2.5 text-right group focus:outline-none">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-skyBright to-navyMain flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <!-- أيقونة نجمة وتاج 3D مصغرة -->
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L14.8 8.2L21.5 9L16.5 13.6L17.8 20.2L12 16.9L6.2 20.2L7.5 13.6L2.5 9L9.2 8.2L12 2Z" fill="#FBBF24" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block font-heading font-extrabold text-sm sm:text-base text-navyMain leading-tight">مجلة انضباطي سر تميزي</span>
+                        <span class="block text-xs text-skyDeep font-bold">ابتدائية ١٨٢ • العام الدراسي ١٤٤٨هـ</span>
+                    </div>
+                </button>
+
+                <!-- مؤشر الصفحة الحالية ونسبة التصفح -->
+                <div class="flex items-center gap-2 bg-skyLight/70 px-3 py-1.5 rounded-2xl border border-skyBright/30">
+                    <span class="text-xs sm:text-sm font-bold text-navyMain" id="page-indicator">صفحة 1 من 13</span>
+                    <span class="text-xs font-extrabold bg-navyMain text-white px-2 py-0.5 rounded-xl" id="progress-percent">8%</span>
+                    <button onclick="toggleTocModal()" class="mr-1 bg-skyDeep hover:bg-navyMain text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1 shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        <span>الفهرس</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- شريط التنقل السريع بين الصفحات الـ 13 -->
+            <nav aria-label="صفحات المجلة" class="mt-2 pt-2 border-t border-skyLight flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1" id="quick-nav-pills">
+                <!-- يتم تعبئتها تلقائياً بواسطة JS -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- نافذة الفهرس المنبثقة (TOC Modal) -->
+    <div id="toc-modal" class="no-print fixed inset-0 z-50 hidden bg-navyDark/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border-4 border-skyBright max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-skyLight">
+                <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                    <span>📚</span> فهرس صفحات المجلة
+                </h3>
+                <button onclick="toggleTocModal()" class="w-9 h-9 rounded-full bg-skyLight hover:bg-red-100 text-navyMain hover:text-red-600 font-bold flex items-center justify-center transition-colors">✕</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 overflow-y-auto custom-scrollbar py-4" id="toc-grid">
+                <!-- يتم تعبئتها بواسطة JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي للمجلة -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 1: الغلاف -->
+        <!-- ========================================================= -->
+        <section id="page-1" class="mag-page active">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navyMain via-skyDeep to-skyBright text-white p-6 sm:p-10 shadow-2xl border-4 border-white">
+                <!-- زخارف خلفية ناعمة -->
+                <div class="absolute -top-16 -left-16 w-56 h-56 bg-white/10 rounded-full blur-xl"></div>
+                <div class="absolute -bottom-20 -right-16 w-72 h-72 bg-goldLight/20 rounded-full blur-xl"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- الجانب النصي للغلاف -->
+                    <div class="lg:col-span-7 text-center lg:text-right space-y-5">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-bold text-goldLight border border-white/30">
+                            <span>✨</span>
+                            <span>إصدار تربوي تفاعلي لطالبات المرحلة الابتدائية</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl font-black leading-tight drop-shadow-md">
+                            مجلة <span class="text-goldLight">انضباطي</span> سر تميزي
+                        </h1>
+
+                        <div class="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/25 shadow-inner">
+                            <p class="text-lg sm:text-xl font-bold text-white leading-relaxed">
+                                «بانضباطي أرتقي، وبأخلاقي أتميز، وبحضوري أصنع نجاحي»
+                            </p>
+                        </div>
+
+                        <!-- بطاقة البيانات الثابتة للمدرسة (غير قابلة للتعديل نهائياً) -->
+                        <div class="bg-white text-navyDark rounded-3xl p-5 shadow-xl border-b-4 border-goldWarm">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-right">
+                                <div class="flex items-center gap-3 bg-skyLight/50 p-2.5 rounded-2xl">
+                                    <span class="text-2xl">🏫</span>
+                                    <div>
+                                        <span class="block text-xs text-skyDeep font-bold">اسم المدرسة</span>
+                                        <span class="font-heading font-extrabold text-navyMain text-base">ابتدائية ١٨٢</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-skyLight/50 p-2.5 rounded-2xl">
+                                    <span class="text-2xl">📅</span>
+                                    <div>
+                                        <span class="block text-xs text-skyDeep font-bold">العام الدراسي</span>
+                                        <span class="font-heading font-extrabold text-navyMain text-base">١٤٤٨هـ</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-skyLight/50 p-2.5 rounded-2xl">
+                                    <span class="text-2xl">👩‍💼</span>
+                                    <div>
+                                        <span class="block text-xs text-skyDeep font-bold">مديرة المدرسة</span>
+                                        <span class="font-heading font-extrabold text-navyMain text-base">أمل أحمد الحربي</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-skyLight/50 p-2.5 rounded-2xl">
+                                    <span class="text-2xl">📋</span>
+                                    <div>
+                                        <span class="block text-xs text-skyDeep font-bold">المساعد الإداري</span>
+                                        <span class="font-heading font-extrabold text-navyMain text-base">ابتسام سعيد الزهراني</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="goToPage(2)" class="w-full sm:w-auto bg-gradient-to-r from-goldWarm to-goldLight hover:from-goldLight hover:to-goldWarm text-navyDark font-heading font-black text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3 mx-auto lg:mx-0">
+                                <span>ابدئي تصفح المجلة ✨</span>
+                                <svg class="w-6 h-6 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- الرسمة الكرتونية ثلاثية الأبعاد الناعمة لطالبات سعيدات أمام المدرسة -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="animate-float w-full max-w-sm bg-white/95 rounded-3xl p-4 shadow-2xl border-4 border-goldLight">
+                            <svg viewBox="0 0 400 380" class="w-full h-auto rounded-2xl" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#BAE6FD"/>
+                                        <stop offset="100%" stop-color="#F0F9FF"/>
+                                    </linearGradient>
+                                    <linearGradient id="schoolWall" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#FFFFFF"/>
+                                        <stop offset="100%" stop-color="#E2E8F0"/>
+                                    </linearGradient>
+                                    <linearGradient id="apronBlue" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#1E3A8A"/>
+                                        <stop offset="100%" stop-color="#0284C7"/>
+                                    </linearGradient>
+                                    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+                                        <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0F172A" flood-opacity="0.15"/>
+                                    </filter>
+                                </defs>
+
+                                <!-- سماء وغيوم وشمس -->
+                                <rect width="400" height="380" rx="20" fill="url(#skyGrad)"/>
+                                <circle cx="330" cy="55" r="30" fill="#FBBF24" filter="url(#softShadow)"/>
+                                <circle cx="330" cy="55" r="22" fill="#FEF08A"/>
+                                <!-- غيوم لطيفة -->
+                                <path d="M55 75 Q65 55 85 60 Q105 45 125 65 Q140 65 140 80 Q140 95 120 95 L60 95 Q45 95 45 82 Q45 72 55 75 Z" fill="#FFFFFF" opacity="0.9"/>
+
+                                <!-- مبنى ابتدائية ١٨٢ -->
+                                <g filter="url(#softShadow)">
+                                    <rect x="65" y="110" width="270" height="170" rx="14" fill="url(#schoolWall)" stroke="#CBD5E1" stroke-width="2"/>
+                                    <!-- سقف المدرسة -->
+                                    <path d="M50 115 L200 65 L350 115 Z" fill="#1E3A8A"/>
+                                    <path d="M62 113 L200 72 L338 113 Z" fill="#0284C7"/>
+                                    <!-- ساعة المدرسة -->
+                                    <circle cx="200" cy="95" r="14" fill="#FFFFFF" stroke="#F59E0B" stroke-width="3"/>
+                                    <path d="M200 95 L200 86 M200 95 L206 95" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- لوحة اسم المدرسة -->
+                                    <rect x="130" y="122" width="140" height="28" rx="8" fill="#1E3A8A" stroke="#FBBF24" stroke-width="2"/>
+                                    <text x="200" y="141" text-anchor="middle" fill="#FFFFFF" font-family="Cairo, sans-serif" font-weight="bold" font-size="14">ابتدائية ١٨٢</text>
+                                    <!-- نوافذ -->
+                                    <rect x="85" y="162" width="38" height="38" rx="6" fill="#BAE6FD" stroke="#0284C7" stroke-width="2"/>
+                                    <rect x="277" y="162" width="38" height="38" rx="6" fill="#BAE6FD" stroke="#0284C7" stroke-width="2"/>
+                                    <!-- بوابة المدرسة -->
+                                    <path d="M165 280 L165 205 Q200 185 235 205 L235 280 Z" fill="#38BDF8" stroke="#1E3A8A" stroke-width="3"/>
+                                </g>
+
+                                <!-- أرضية خضراء وممر -->
+                                <rect x="0" y="275" width="400" height="105" fill="#86EFAC"/>
+                                <path d="M150 275 L250 275 L290 380 L110 380 Z" fill="#F1F5F9"/>
+
+                                <!-- الطالبة الأولى (يمين) بزي مدرسي محتشم وربطات شعر -->
+                                <g transform="translate(115, 205)" filter="url(#softShadow)">
+                                    <!-- شعر وضفائر -->
+                                    <circle cx="12" cy="32" r="12" fill="#3B2F2F"/>
+                                    <circle cx="68" cy="32" r="12" fill="#3B2F2F"/>
+                                    <circle cx="14" cy="24" r="4" fill="#38BDF8"/>
+                                    <circle cx="66" cy="24" r="4" fill="#38BDF8"/>
+                                    <!-- وجه -->
+                                    <circle cx="40" cy="32" r="24" fill="#FDE6D8"/>
+                                    <path d="M16 30 Q40 8 64 30 Q55 12 40 12 Q25 12 16 30 Z" fill="#3B2F2F"/>
+                                    <!-- عيون مبتسمة وخدود -->
+                                    <circle cx="32" cy="33" r="3" fill="#0F172A"/>
+                                    <circle cx="48" cy="33" r="3" fill="#0F172A"/>
+                                    <circle cx="26" cy="39" r="3.5" fill="#FDA4AF" opacity="0.7"/>
+                                    <circle cx="54" cy="39" r="3.5" fill="#FDA4AF" opacity="0.7"/>
+                                    <path d="M34 42 Q40 48 46 42" stroke="#E11D48" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <!-- قميص أبيض ومريول كحلي محتشم طويل -->
+                                    <path d="M22 56 L58 56 L68 125 L12 125 Z" fill="#FFFFFF"/>
+                                    <path d="M24 62 L56 62 L66 132 L14 132 Z" fill="url(#apronBlue)" rx="8"/>
+                                    <!-- أكمام بيضاء -->
+                                    <path d="M22 58 L6 85 L15 90 L26 68 Z" fill="#FFFFFF"/>
+                                    <path d="M58 58 L74 85 L65 90 L54 68 Z" fill="#FFFFFF"/>
+                                    <!-- كتاب -->
+                                    <rect x="24" y="78" width="32" height="24" rx="4" fill="#FBBF24" stroke="#B45309" stroke-width="1.5"/>
+                                    <!-- أرجل وحذاء -->
+                                    <rect x="27" y="132" width="8" height="20" fill="#FDE6D8"/>
+                                    <rect x="45" y="132" width="8" height="20" fill="#FDE6D8"/>
+                                    <ellipse cx="31" cy="153" rx="9" ry="5" fill="#0F172A"/>
+                                    <ellipse cx="49" cy="153" rx="9" ry="5" fill="#0F172A"/>
+                                </g>
+
+                                <!-- الطالبة الثانية (يسار) بحجاب أبيض ومريول مدرسي -->
+                                <g transform="translate(215, 208)" filter="url(#softShadow)">
+                                    <!-- حجاب أبيض ناعم -->
+                                    <path d="M14 34 Q14 6 40 6 Q66 6 66 34 L68 68 Q40 76 12 68 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+                                    <!-- وجه -->
+                                    <circle cx="40" cy="33" r="20" fill="#FBD5C0"/>
+                                    <circle cx="33" cy="33" r="2.8" fill="#0F172A"/>
+                                    <circle cx="47" cy="33" r="2.8" fill="#0F172A"/>
+                                    <circle cx="28" cy="38" r="3" fill="#FDA4AF" opacity="0.7"/>
+                                    <circle cx="52" cy="38" r="3" fill="#FDA4AF" opacity="0.7"/>
+                                    <path d="M35 41 Q40 46 45 41" stroke="#E11D48" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <!-- مريول مدرسي محتشم -->
+                                    <path d="M22 62 L58 62 L66 130 L14 130 Z" fill="url(#apronBlue)"/>
+                                    <!-- أكمام بيضاء -->
+                                    <path d="M22 64 L8 88 L16 93 L26 72 Z" fill="#FFFFFF"/>
+                                    <path d="M58 64 L74 42 L66 37 L54 66 Z" fill="#FFFFFF"/>
+                                    <!-- يد ملوّحة بالسلام -->
+                                    <circle cx="71" cy="38" r="5" fill="#FBD5C0"/>
+                                    <!-- أرجل وحذاء -->
+                                    <rect x="28" y="130" width="8" height="19" fill="#FBD5C0"/>
+                                    <rect x="44" y="130" width="8" height="19" fill="#FBD5C0"/>
+                                    <ellipse cx="32" cy="150" rx="8" ry="4.5" fill="#1E3A8A"/>
+                                    <ellipse cx="48" cy="150" rx="8" ry="4.5" fill="#1E3A8A"/>
+                                </g>
+
+                                <!-- نجوم زينة -->
+                                <path d="M45 140 L48 147 L55 148 L50 153 L51 160 L45 156 L39 160 L40 153 L35 148 L42 147 Z" fill="#FBBF24"/>
+                                <path d="M355 145 L358 152 L365 153 L360 158 L361 165 L355 161 L349 165 L350 158 L345 153 L352 152 Z" fill="#FBBF24"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 2: كلمة المجلة -->
+        <!-- ========================================================= -->
+        <section id="page-2" class="mag-page">
+            <div class="card-3d p-6 sm:p-10 relative overflow-hidden">
+                <div class="flex items-center gap-3 mb-6 border-b-2 border-skyLight pb-4">
+                    <span class="w-12 h-12 rounded-2xl bg-skyLight text-skyDeep flex items-center justify-center text-2xl shadow-sm">💌</span>
+                    <div>
+                        <span class="text-xs font-bold text-skyDeep uppercase tracking-wider">الصفحة الثانية</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-navyMain">كلمة المجلة</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-4 flex justify-center">
+                        <!-- رسمة طالبة ترحب بالقارئات -->
+                        <div class="animate-float-delayed bg-gradient-to-b from-skyLight to-white p-5 rounded-3xl border-2 border-skyBright/40 shadow-lg w-60">
+                            <svg viewBox="0 0 220 240" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="110" cy="115" r="95" fill="#E0F2FE"/>
+                                <!-- قلب ترحيبي -->
+                                <path d="M168 55 C168 45 182 45 182 55 C182 45 196 45 196 55 C196 68 182 78 182 78 C182 78 168 68 168 55 Z" fill="#F43F5E"/>
+                                <!-- شخصية الطالبة -->
+                                <circle cx="72" cy="78" r="16" fill="#3B2F2F"/>
+                                <circle cx="148" cy="78" r="16" fill="#3B2F2F"/>
+                                <circle cx="75" cy="66" r="5" fill="#FBBF24"/>
+                                <circle cx="145" cy="66" r="5" fill="#FBBF24"/>
+                                <circle cx="110" cy="82" r="34" fill="#FDE6D8"/>
+                                <path d="M76 78 Q110 46 144 78 Q132 54 110 54 Q88 54 76 78 Z" fill="#3B2F2F"/>
+                                <circle cx="98" cy="83" r="4" fill="#0F172A"/>
+                                <circle cx="122" cy="83" r="4" fill="#0F172A"/>
+                                <circle cx="99" cy="81.5" r="1.3" fill="#FFFFFF"/>
+                                <circle cx="123" cy="81.5" r="1.3" fill="#FFFFFF"/>
+                                <circle cx="90" cy="92" r="5" fill="#FDA4AF" opacity="0.7"/>
+                                <circle cx="130" cy="92" r="5" fill="#FDA4AF" opacity="0.7"/>
+                                <path d="M101 97 Q110 106 119 97" stroke="#E11D48" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                <!-- زي مدرسي -->
+                                <path d="M82 116 L138 116 L152 205 L68 205 Z" fill="#FFFFFF"/>
+                                <path d="M85 124 L135 124 L148 205 L72 205 Z" fill="#1E3A8A"/>
+                                <!-- ياقة بيضاء أنيقة -->
+                                <path d="M94 116 L110 132 L126 116 Z" fill="#FFFFFF"/>
+                                <circle cx="110" cy="144" r="3" fill="#FBBF24"/>
+                                <circle cx="110" cy="158" r="3" fill="#FBBF24"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-8 space-y-5">
+                        <div class="bg-gradient-to-br from-skyLight/60 via-white to-amber-50/60 p-6 sm:p-8 rounded-3xl border-2 border-skyBright/40 shadow-inner relative">
+                            <span class="text-5xl text-skyBright/40 font-serif absolute top-3 right-5">❝</span>
+                            <p class="text-xl sm:text-2xl font-bold text-navyDark leading-loose pt-4">
+                                عزيزتي الطالبة، الانضباط ليس مجرد حضور إلى المدرسة في الوقت المحدد، بل هو سلوك جميل يعكس احترامك لنفسك ولمعلمتك وزميلاتك ومدرستك. في هذه المجلة سنتعلم معاً كيف نكون طالبات متميزات بأخلاقنا والتزامنا وسلوكنا الإيجابي.
+                            </p>
+                            <span class="text-5xl text-skyBright/40 font-serif block text-left leading-none">❞</span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-4 bg-navyMain text-white p-4 rounded-2xl">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🌟</span>
+                                <span class="font-bold text-sm sm:text-base">أهلاً بكِ يا نجمة ابتدائية ١٨٢ في رحلة التميز!</span>
+                            </div>
+                            <button onclick="goToPage(3)" class="bg-goldLight hover:bg-goldWarm text-navyDark font-bold px-5 py-2 rounded-xl text-sm transition-colors">
+                                هيا ننطلق ←
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 3: أنا طالبة منضبطة -->
+        <!-- ========================================================= -->
+        <section id="page-3" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-skyLight flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 h-12 rounded-2xl bg-gradient-to-br from-skyBright to-navyMain text-white flex items-center justify-center text-2xl shadow">👧🏻</span>
+                        <div>
+                            <span class="text-xs font-bold text-skyDeep">الصفحة الثالثة</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-navyMain">أنا طالبة منضبطة</h2>
+                        </div>
+                    </div>
+                    <p class="text-sm font-bold text-skyDeep bg-skyLight/70 px-4 py-2 rounded-2xl">اضغطي على كل بطاقة لتتألقي بنجمة الانضباط ✨</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="page3-cards">
+                    <!-- بطاقة 1 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">⏰</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">أحضر إلى المدرسة مبكراً</h3>
+                        <p class="text-sm text-slate-600">لأشهد الطابور الصباحي بنشاط وأبدأ يومي الدراسي بكل حيوية.</p>
+                    </div>
+                    <!-- بطاقة 2 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">👗</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">ألتزم بالزي المدرسي</h3>
+                        <p class="text-sm text-slate-600">أحرص على نظافة ومظهر مريولي المدرسي المحتشم والأنيق.</p>
+                    </div>
+                    <!-- بطاقة 3 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">🎒</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">أحافظ على أدواتي وكتبي</h3>
+                        <p class="text-sm text-slate-600">أرتب حقيبتي وأغلف كتبي وأحافظ عليها نظيفة ومرتبة.</p>
+                    </div>
+                    <!-- بطاقة 4 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">👩‍🏫</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">أستمع إلى معلمتي باهتمام</h3>
+                        <p class="text-sm text-slate-600">أنصت لشرح معلمتي داخل الفصل لأفهم دروسي وأتفوق.</p>
+                    </div>
+                    <!-- بطاقة 5 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">📝</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">أؤدي واجباتي ومسؤولياتي</h3>
+                        <p class="text-sm text-slate-600">أنجز واجباتي المدرسية في وقتها بإتقان واجتهاد.</p>
+                    </div>
+                    <!-- بطاقة 6 -->
+                    <div onclick="sparkleCard(this)" class="card-3d p-6 cursor-pointer text-center space-y-3 group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-skyLight group-hover:bg-skyBright transition-colors flex items-center justify-center text-3xl shadow-inner">📋</div>
+                        <h3 class="text-xl font-extrabold text-navyMain">ألتزم بالتعليمات المدرسية</h3>
+                        <p class="text-sm text-slate-600">أطبق قواعد النظام والسلامة في الساحة والممرات والفصل.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 4: آدابي في مدرستي -->
+        <!-- ========================================================= -->
+        <section id="page-4" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-gradient-to-l from-navyMain to-skyDeep text-white rounded-3xl p-6 shadow-lg flex items-center gap-4">
+                    <span class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl">🌸</span>
+                    <div>
+                        <span class="text-xs font-bold text-goldLight">الصفحة الرابعة</span>
+                        <h2 class="text-2xl sm:text-3xl font-black">آدابي في مدرستي</h2>
+                        <p class="text-sm text-skyLight mt-1">الأخلاق الحسنة هي أجمل زينة تتحلى بها الطالبة المسلمة</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-skyBright">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-skyLight flex items-center justify-center text-3xl">😊</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أبدأ يومي بالسلام والابتسامة</h3>
+                            <p class="text-sm text-slate-600 mt-1">أُلقي تحية الإسلام «السلام عليكم» بوجه مبتسم لكل من أقابله.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-goldWarm">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-amber-100 flex items-center justify-center text-3xl">🙋🏻‍♀️</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أستأذن قبل الحديث</h3>
+                            <p class="text-sm text-slate-600 mt-1">أرفع يدي بهدوء وأنتظر الإذن من معلمتي قبل المشاركة.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-navyMain">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-blue-100 flex items-center justify-center text-3xl">🚦</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أحترم النظام والتعليمات</h3>
+                            <p class="text-sm text-slate-600 mt-1">أسير بهدوء في الصف والممرات دون تدافع أو إزعاج.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-emerald-500">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-emerald-100 flex items-center justify-center text-3xl">✨</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أحافظ على نظافة فصلي</h3>
+                            <p class="text-sm text-slate-600 mt-1">أترك مقعدي وفصلي نظيفاً ومرتباً طوال اليوم الدراسي.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-pink-500">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl">💬</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أستخدم الكلمات الطيبة</h3>
+                            <p class="text-sm text-slate-600 mt-1">أختار أجمل الألفاظ المهذبة مثل: من فضلك، لو سمحتِ، جزاكِ الله خيراً.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-3d p-5 flex items-center gap-4 border-r-8 border-r-skyDeep">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-skyLight flex items-center justify-center text-3xl">🏫</div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-navyMain">أحترم الممتلكات المدرسية</h3>
+                            <p class="text-sm text-slate-600 mt-1">أحافظ على الطاولات والسبورة والأجهزة لأنها ملك للجميع.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 5: سلوكي الجميل مع معلمتي وزميلاتي -->
+        <!-- ========================================================= -->
+        <section id="page-5" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-skyLight flex items-center gap-4">
+                    <span class="w-14 h-14 rounded-2xl bg-amber-100 text-goldWarm flex items-center justify-center text-3xl shadow-sm">🤝</span>
+                    <div>
+                        <span class="text-xs font-bold text-skyDeep">الصفحة الخامسة</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-navyMain">سلوكي الجميل مع معلمتي وزميلاتي</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">💐</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أقدر معلمتي وأحترم توجيهاتها</h3>
+                        <p class="text-sm text-slate-600">معلمتي قدوتي وتبذل جهدها لتعليمي، فأستمع لنصائحها بكل حب.</p>
+                    </div>
+
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">🤲</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أساعد زميلاتي عند الحاجة</h3>
+                        <p class="text-sm text-slate-600">أقدم العون لزميلتي إذا احتاجت قلماً أو فهماً لدرس أو مساعدة.</p>
+                    </div>
+
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">🚫</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أبتعد عن السخرية والاستهزاء</h3>
+                        <p class="text-sm text-slate-600">أحترم اختلاف الآخرين ولا أضحك على خطأ أي طالبة.</p>
+                    </div>
+
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">🌷</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أعتذر عندما أخطئ</h3>
+                        <p class="text-sm text-slate-600">الاعتذار شجاعة وأخلاق رفيعة تُصلح القلوب وتنشر الود.</p>
+                    </div>
+
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">🧩</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أتعاون وأشارك بروح الفريق</h3>
+                        <p class="text-sm text-slate-600">أعمل مع مجموعتي بنشاط وتعاون لنحقق النجاح معاً.</p>
+                    </div>
+
+                    <div class="card-3d p-6 bg-gradient-to-b from-white to-skyLight/40 text-center space-y-3">
+                        <div class="text-4xl">💖</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">أستخدم عبارات الشكر والتقدير</h3>
+                        <p class="text-sm text-slate-600">أقول «شكراً لكِ» لكل من يقدم لي معروفاً أو خدمة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 6: مدرستي مسؤوليتي -->
+        <!-- ========================================================= -->
+        <section id="page-6" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-gradient-to-r from-skyDeep to-navyMain text-white rounded-3xl p-6 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <span class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl">🌱</span>
+                        <div>
+                            <span class="text-xs font-bold text-goldLight">الصفحة السادسة</span>
+                            <h2 class="text-2xl sm:text-3xl font-black">مدرستي مسؤوليتي</h2>
+                            <p class="text-sm text-skyLight">مدرستي بيتي الثاني.. أحافظ عليها لتبقى جميلة ونظيفة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-skyLight flex items-center justify-center text-3xl">🧹</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">المحافظة على نظافة المدرسة</h3>
+                        <p class="text-sm text-slate-600">النظافة عنوان الطالبة المسلمة وجمال بيئتنا التعليمية.</p>
+                    </div>
+
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-3xl">🛡️</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">عدم العبث بالمرافق</h3>
+                        <p class="text-sm text-slate-600">أحافظ على الجدران والحدائق والأجهزة دون تخريب أو كتابة عليها.</p>
+                    </div>
+
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-3xl">📚</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">المحافظة على الكتب والأثاث</h3>
+                        <p class="text-sm text-slate-600">أعتني بالكتب المدرسية والمقاعد لتستفيد منها زميلاتي من بعدي.</p>
+                    </div>
+
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-3xl">🗑️</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">وضع النفايات في سلة المهملات</h3>
+                        <p class="text-sm text-slate-600">أرمي بقايا الطعام والأوراق في السلة المخصصة دائماً.</p>
+                    </div>
+
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-cyan-100 flex items-center justify-center text-3xl">💧</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">المحافظة على دورات المياه</h3>
+                        <p class="text-sm text-slate-600">أغلق صنبور الماء بإحكام وأترك المكان نظيفاً لغيري.</p>
+                    </div>
+
+                    <div class="card-3d p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-3xl">📢</div>
+                        <h3 class="text-lg font-extrabold text-navyMain">الإبلاغ عن أي تلف أو خطر</h3>
+                        <p class="text-sm text-slate-600">أخبر معلمتي أو الإدارة فوراً عند رؤية أي شيء يهدد سلامتنا.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 7: لا للتنمر… نعم للمحبة -->
+        <!-- ========================================================= -->
+        <section id="page-7" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-skyLight flex items-center gap-4">
+                    <span class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-3xl">💝</span>
+                    <div>
+                        <span class="text-xs font-bold text-skyDeep">الصفحة السابعة</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-navyMain">لا للتنمر… نعم للمحبة</h2>
+                    </div>
+                </div>
+
+                <!-- العبارة الرئيسية البارزة -->
+                <div class="bg-gradient-to-r from-navyMain via-skyDeep to-skyBright text-white rounded-3xl p-6 text-center shadow-xl border-4 border-goldLight">
+                    <div class="text-3xl mb-2">💖🌟💖</div>
+                    <p class="text-xl sm:text-2xl font-black leading-relaxed">
+                        «كلمتي الطيبة تسعد غيري، وابتعادي عن التنمر يجعل مدرستي أجمل»
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- ما التنمر؟ -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-skyDeep">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>🤔</span> ما التنمر؟
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed">
+                            هو سلوك مؤذٍ ومتكرر يقوم به شخص لإزعاج زميلته أو جرح مشاعرها بالكلام أو الأفعال، وهو سلوك مرفوض في ديننا ومدرستنا.
+                        </p>
+                    </div>
+
+                    <!-- صور التنمر وأشكاله -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-rose-500">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>⚠️</span> صور التنمر وأشكاله
+                        </h3>
+                        <ul class="text-slate-700 space-y-1.5 text-sm sm:text-base list-disc list-inside">
+                            <li><strong>التنمر اللفظي:</strong> السخرية، التنابز بالألقاب، أو الكلام الجارح.</li>
+                            <li><strong>التنمر الجسدي:</strong> الدفع، الضرب، أو إتلاف أغراض الزميلة.</li>
+                            <li><strong>التنمر الاجتماعي:</strong> استبعاد زميلتنا عمداً من اللعب أو الحديث.</li>
+                        </ul>
+                    </div>
+
+                    <!-- كيف أتصرف إذا تعرضت للتنمر؟ -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-goldWarm">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>🦸🏻‍♀️</span> كيف أتصرف إذا تعرضت للتنمر؟
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed">
+                            أبقى قوية وواثقة بنفسي، أقول بثبات: «توقفي، هذا يزعجني»، أبتعد بهدوء، وأتحدث فوراً مع معلمتي أو والديّ.
+                        </p>
+                    </div>
+
+                    <!-- كيف أساعد زميلتي؟ -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-emerald-500">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>🤝</span> كيف أساعد زميلتي؟
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed">
+                            أقف بجانبها وأساندها بكلمات لطيفة، أدعوها للعب والجلوس معي، ولا أشارك أبداً في الضحك أو السخرية.
+                        </p>
+                    </div>
+
+                    <!-- أهمية إبلاغ المعلمة أو المرشدة -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-navyMain">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>👩‍🏫</span> أهمية إبلاغ المعلمة أو المرشدة الطلابية
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed">
+                            الإبلاغ ليس وشاية، بل هو شجاعة لحماية نفسي وزميلاتي ومساعدة المدرسة في حل المشكلة بلطف وحكمة.
+                        </p>
+                    </div>
+
+                    <!-- نشر المحبة والاحترام -->
+                    <div class="card-3d p-6 space-y-2 border-t-4 border-t-skyBright">
+                        <h3 class="text-xl font-extrabold text-navyMain flex items-center gap-2">
+                            <span>🌈</span> نشر المحبة والاحترام والتسامح
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed">
+                            نحن أخوات في مدرسة واحدة؛ بالابتسامة والتسامح والكلمة الحلوة تصبح مدرستنا واحة من السعادة والأمان.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 8: بطلة الحضور المبكر والمواظبة -->
+        <!-- ========================================================= -->
+        <section id="page-8" class="mag-page">
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-skyLight flex items-center gap-4">
+                    <span class="w-14 h-14 rounded-2xl bg-skyLight text-skyDeep flex items-center justify-center text-3xl">⏰</span>
+                    <div>
+                        <span class="text-xs font-bold text-skyDeep">الصفحة الثامنة</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-navyMain">بطلة الحضور المبكر والمواظبة</h2>
+                    </div>
+                </div>
+
+                <!-- بطاقة شرفية بارزة -->
+                <div class="animate-pulse-soft bg-gradient-to-br from-amber-100 via-yellow-50 to-skyLight rounded-3xl p-6 sm:p-8 border-4 border-goldWarm shadow-xl text-center relative overflow-hidden">
+                    <div class="text-5xl mb-2">👑⭐👑</div>
+                    <h3 class="text-2xl sm:text-3xl font-black text-navyMain">أنا بطلة الحضور والمواظبة</h3>
+                    <p class="text-base sm:text-lg font-bold text-skyDeep mt-2">
+                        حضوري كل يوم وانضباطي في الموعد هو سر تفوقي ونجاحي!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card-3d p-5 space-y-2">
+                        <span class="text-3xl">🌅</span>
+                        <h4 class="text-lg font-extrabold text-navyMain">أهمية الحضور اليومي</h4>
+                        <p class="text-sm text-slate-600">الحضور اليومي يربطني بدروسي أولاً بأول ويجعلني متفوقة ومتميزة.</p>
+                    </div>
+
+                    <div class="card-3d p-5 space-y-2">
+                        <span class="text-3xl">📉</span>
+                        <h4 class="text-lg font-extrabold text-navyMain">أثر التأخر والغياب على التحصيل</h4>
+                        <p class="text-sm text-slate-600">الغياب والتأخر يفوّتان عليّ شرح المعلمة والأنشطة الممتعة مع زميلاتي.</p>
+                    </div>
+
+                    <div class="card-3d p-5 space-y-2">
+                        <span class="text-3xl">☀️</span>
+                        <h4 class="text-lg font-extrabold text-navyMain">الاستعداد المبكر للمدرسة</h4>
+                        <p class="text-sm text-slate-600">أستيقظ مبكراً، أصلي الفجر، أتناول فطوري الصحي، وأنطلق بنشاط.</p>
+                    </div>
+
+                    <div class="card-3d p-5 space-y-2 sm:col-span-1 lg:col-span-1">
+                        <span class="text-3xl">🎒</span>
+                        <h4 class="text-lg font-extrabold text-navyMain">تجهيز الحقيبة والزي من المساء</h4>
+                        <p class="text-sm text-slate-600">أرتب جدولي وحقيبتي ومريولي قبل النوم لأوفر الوقت في الصباح.</p>
+                    </div>
+
+                    <div class="card-3d p-5 space-y-2 md:col-span-2 lg:col-span-2 bg-skyLight/40">
+                        <span class="text-3xl">😴</span>
+                        <h4 class="text-lg font-extrabold text-navyMain">النوم المبكر والاستيقاظ بنشاط</h4>
+                        <p class="text-sm text-slate-700">النوم الكافي والمبكر يمنح عقلي الذكاء والتركيز، ويجعل وجهي مشرقاً ومبتسماً في الصباح.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 9: تحدي السلوك الإيجابي -->
+        <!-- ========================================================= -->
+        <section id="page-9" class="mag-page">
+            <div class="card-3d p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-skyLight pb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-14 h-14 rounded-2xl bg-goldLight/30 text-goldWarm flex items-center justify-center text-3xl">🏆</span>
+                        <div>
+                            <span class="text-xs font-bold text-skyDeep">الصفحة التاسعة</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-navyMain">تحدي السلوك الإيجابي</h2>
+                        </div>
+                    </div>
+                    <button onclick="resetChallenge()" class="text-xs sm:text-sm font-bold text-skyDeep hover:text-navyMain bg-skyLight px-4 py-2 rounded-xl transition-colors self-start sm:self-auto">
+                        إعادة التحدي ↺
+                    </button>
+                </div>
+
+                <!-- شريط ونسبة الإنجاز المرئية -->
+                <div class="bg-gradient-to-l from-navyMain to-skyDeep text-white rounded-3xl p-5 shadow-lg space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-base sm:text-lg" id="challenge-status-text">هيا ابدئي بتحديد السلوكيات التي أنجزتِها اليوم! 🌟</span>
+                        <span class="text-2xl sm:text-3xl font-black text-goldLight" id="challenge-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-white/25 h-4 rounded-full overflow-hidden p-0.5">
+                        <div id="challenge-bar" class="bg-gradient-to-l from-goldLight to-goldWarm h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+                    </div>
+                    <p class="text-xs text-skyLight" id="challenge-count-label">أنجزتِ 0 من 8 تحديات</p>
+                </div>
+
+                <!-- قائمة التحديات الـ 8 التفاعلية -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="challenge-list">
+                    <!-- يتم توليدها بواسطة JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 10: اختبري معلوماتك -->
+        <!-- ========================================================= -->
+        <section id="page-10" class="mag-page">
+            <div class="card-3d p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-skyLight pb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-14 h-14 rounded-2xl bg-skyLight text-navyMain flex items-center justify-center text-3xl">🧠</span>
+                        <div>
+                            <span class="text-xs font-bold text-skyDeep">الصفحة العاشرة</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-navyMain">اختبري معلوماتك</h2>
+                            <p class="text-sm text-slate-600">أجيبي عن الأسئلة العشرة واكتشفي نتيجتك الفورية!</p>
+                        </div>
+                    </div>
+                    <div class="bg-navyMain text-white px-4 py-2 rounded-2xl font-bold text-sm sm:text-base self-start sm:self-auto">
+                        الدرجة: <span id="quiz-live-score" class="text-goldLight font-black text-lg">0</span> / 10
+                    </div>
+                </div>
+
+                <!-- حاوية الأسئلة -->
+                <div id="quiz-container" class="space-y-5">
+                    <!-- يتم توليد الأسئلة بواسطة JS -->
+                </div>
+
+                <!-- لوحة النتيجة النهائية وزر إعادة الاختبار -->
+                <div id="quiz-result-box" class="hidden bg-gradient-to-br from-skyLight via-white to-amber-50 rounded-3xl p-6 sm:p-8 border-4 border-goldWarm text-center space-y-4 shadow-xl">
+                    <div id="quiz-medal" class="text-6xl">🏆</div>
+                    <h3 class="text-2xl sm:text-3xl font-black text-navyMain" id="quiz-final-title">أحسنتِ يا بطلة!</h3>
+                    <p class="text-xl font-extrabold text-skyDeep" id="quiz-final-score">حصلتِ على 10 من 10</p>
+                    <p class="text-base sm:text-lg text-slate-700 max-w-xl mx-auto font-medium" id="quiz-encouragement"></p>
+                    <div class="pt-2 flex flex-wrap justify-center gap-3">
+                        <button onclick="initQuiz()" class="bg-navyMain hover:bg-skyDeep text-white font-bold px-6 py-3 rounded-2xl shadow transition-colors">
+                            إعادة الاختبار ↺
+                        </button>
+                        <button onclick="goToPage(11)" class="bg-goldWarm hover:bg-goldLight text-navyDark font-bold px-6 py-3 rounded-2xl shadow transition-colors">
+                            الانتقال لميثاق الطالبة ←
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 11: ميثاق الطالبة المتميزة -->
+        <!-- ========================================================= -->
+        <section id="page-11" class="mag-page">
+            <div class="space-y-6">
+                <div class="no-print bg-white rounded-3xl p-5 shadow-md border-2 border-skyLight flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 h-12 rounded-2xl bg-skyLight text-navyMain flex items-center justify-center text-2xl">📜</span>
+                        <div>
+                            <span class="text-xs font-bold text-skyDeep">الصفحة الحادية عشرة</span>
+                            <h2 class="text-2xl font-black text-navyMain">ميثاق الطالبة المتميزة</h2>
+                        </div>
+                    </div>
+                    <button onclick="window.print()" class="bg-navyMain hover:bg-skyDeep text-white font-bold px-6 py-3 rounded-2xl shadow-lg flex items-center gap-2 transition-colors">
+                        <span>طباعة الميثاق 🖨️</span>
+                    </button>
+                </div>
+
+                <!-- بطاقة الميثاق القابلة للطباعة -->
+                <div class="print-only-container ornate-border rounded-3xl p-8 sm:p-12 text-center space-y-6 relative">
+                    <div class="flex justify-center items-center gap-3 text-goldWarm text-3xl">
+                        <span>⭐</span><span>👑</span><span>⭐</span>
+                    </div>
+
+                    <div>
+                        <span class="inline-block bg-skyLight text-navyMain font-bold px-4 py-1 rounded-full text-sm mb-2">ابتدائية ١٨٢ • العام الدراسي ١٤٤٨هـ</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-navyMain">ميثاق الطالبة المتميزة</h3>
+                    </div>
+
+                    <div class="max-w-2xl mx-auto bg-white/90 rounded-3xl p-6 sm:p-8 border-2 border-skyBright/50 shadow-sm">
+                        <p class="text-xl sm:text-2xl font-bold text-navyDark leading-loose">
+                            «أتعهد بأن أكون طالبة منضبطة، أحترم معلمتي وزميلاتي، أحافظ على مدرستي وممتلكاتها، ألتزم بالحضور والمواظبة، وأحرص على نشر الأخلاق والسلوك الإيجابي في كل مكان».
+                        </p>
+                    </div>
+
+                    <!-- حقل اختياري لكتابة اسم الطالبة -->
+                    <div class="max-w-md mx-auto pt-2 space-y-2">
+                        <label for="pledge-student-name" class="block text-sm font-bold text-skyDeep">اسم الطالبة المتميزة (اختياري):</label>
+                        <input type="text" id="pledge-student-name" oninput="syncStudentName(this.value)" placeholder="اكتبي اسمكِ الجميل هنا..." class="w-full text-center text-xl font-heading font-extrabold text-navyMain bg-skyLight/40 border-b-2 border-navyMain rounded-xl py-2.5 px-4 focus:outline-none focus:bg-skyLight/70">
+                    </div>
+
+                    <div class="pt-4 border-t border-skyLight flex flex-wrap justify-around gap-4 text-sm font-bold text-navyMain">
+                        <div>المدرسة: ابتدائية ١٨٢</div>
+                        <div>مديرة المدرسة: أمل أحمد الحربي</div>
+                        <div>المساعد الإداري: ابتسام سعيد الزهراني</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 12: الخاتمة ونجمة الانضباط -->
+        <!-- ========================================================= -->
+        <section id="page-12" class="mag-page">
+            <div class="bg-gradient-to-br from-navyMain via-skyDeep to-skyBright text-white rounded-3xl p-8 sm:p-12 shadow-2xl text-center space-y-6 relative overflow-hidden border-4 border-white">
+                <div class="text-6xl animate-float">🌟🏆🌟</div>
+
+                <div>
+                    <span class="inline-block bg-white/20 text-goldLight font-bold px-4 py-1 rounded-full text-sm mb-2">الصفحة الثانية عشرة</span>
+                    <h2 class="text-3xl sm:text-4xl font-black">الخاتمة ونجمة الانضباط</h2>
+                </div>
+
+                <div class="max-w-2xl mx-auto bg-white/15 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/30">
+                    <p class="text-xl sm:text-2xl font-bold leading-loose">
+                        «عزيزتي الطالبة، تذكري أن التميز يبدأ بسلوك صغير، وأن الانضباط طريق النجاح، وأن مدرستك تفخر بك كل يوم. كوني قدوة في أخلاقك، متميزة في حضورك، جميلة في تعاملك».
+                    </p>
+                </div>
+
+                <div class="bg-goldLight text-navyDark rounded-2xl py-4 px-6 max-w-xl mx-auto shadow-lg">
+                    <p class="text-lg sm:text-2xl font-black">
+                        «انضباطي سر تميزي… ونجاحي يبدأ من مدرستي»
+                    </p>
+                </div>
+
+                <div class="pt-3">
+                    <button onclick="goToPage(13)" class="bg-white hover:bg-skyLight text-navyMain font-heading font-black text-lg px-8 py-4 rounded-2xl shadow-xl hover:scale-105 transition-all inline-flex items-center gap-3">
+                        <span>احصلي على شهادة نجمة الانضباط 🎓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- الصفحة 13: شهادة نجمة الانضباط -->
+        <!-- ========================================================= -->
+        <section id="page-13" class="mag-page">
+            <div class="space-y-6">
+                <!-- شريط التحكم قبل الطباعة -->
+                <div class="no-print bg-white rounded-3xl p-5 shadow-md border-2 border-skyLight flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 h-12 rounded-2xl bg-amber-100 text-goldWarm flex items-center justify-center text-2xl">🎓</span>
+                        <div>
+                            <span class="text-xs font-bold text-skyDeep">الصفحة الثالثة عشرة</span>
+                            <h2 class="text-xl sm:text-2xl font-black text-navyMain">شهادة نجمة الانضباط</h2>
+                        </div>
+                    </div>
+                    <button onclick="window.print()" class="w-full sm:w-auto bg-gradient-to-r from-navyMain to-skyDeep hover:opacity-95 text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-all">
+                        <span>طباعة الشهادة 🖨️</span>
+                    </button>
+                </div>
+
+                <!-- قالب الشهادة الاحتفالي القابل للطباعة -->
+                <div class="print-only-container ornate-border rounded-3xl p-6 sm:p-12 text-center relative overflow-hidden">
+                    <!-- نجوم وزخارف زوايا SVG -->
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-3xl sm:text-4xl">🌸✨</span>
+                        <div class="text-center">
+                            <p class="text-sm sm:text-base font-extrabold text-navyMain">المملكة العربية السعودية</p>
+                            <p class="text-xs sm:text-sm font-bold text-skyDeep">وزارة التعليم • ابتدائية ١٨٢</p>
+                        </div>
+                        <span class="text-3xl sm:text-4xl">✨🌸</span>
+                    </div>
+
+                    <!-- وسام النجمة -->
+                    <div class="my-4 flex justify-center">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-goldLight to-goldWarm flex items-center justify-center shadow-lg border-4 border-white">
+                            <svg class="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L14.8 8.2L21.5 9L16.5 13.6L17.8 20.2L12 16.9L6.2 20.2L7.5 13.6L2.5 9L9.2 8.2L12 2Z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <h3 class="text-3xl sm:text-5xl font-black text-navyMain mb-4">شهادة نجمة الانضباط</h3>
+
+                    <p class="text-lg sm:text-xl font-bold text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                        تُمنح هذه الشهادة للطالبة المتميزة تقديراً لالتزامها بالانضباط المدرسي، وحسن سلوكها، ومواظبتها، وحرصها على تطبيق القيم الإيجابية
+                    </p>
+
+                    <!-- خانة اسم الطالبة -->
+                    <div class="max-w-lg mx-auto my-6">
+                        <label for="cert-student-name" class="no-print block text-xs font-bold text-skyDeep mb-1">اكتبي اسمكِ ليظهر في الشهادة قبل الطباعة:</label>
+                        <input type="text" id="cert-student-name" oninput="syncStudentName(this.value)" placeholder="........................................" class="w-full text-center text-2xl sm:text-3xl font-heading font-black text-skyDeep bg-skyLight/30 border-b-4 border-goldWarm rounded-xl py-2 px-4 focus:outline-none">
+                    </div>
+
+                    <!-- البيانات الثابتة للمدرسة والتوقيع -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 mt-6 border-t-2 border-skyLight text-navyMain">
+                        <div class="bg-white/80 p-3 rounded-2xl border border-skyLight">
+                            <span class="block text-xs text-skyDeep font-bold">المدرسة والعام الدراسي</span>
+                            <span class="block font-extrabold text-base mt-1">ابتدائية ١٨٢</span>
+                            <span class="block font-bold text-sm text-slate-600">العام الدراسي: ١٤٤٨هـ</span>
+                        </div>
+
+                        <div class="bg-white/80 p-3 rounded-2xl border border-skyLight">
+                            <span class="block text-xs text-skyDeep font-bold">المساعد الإداري</span>
+                            <span class="block font-extrabold text-base mt-1">ابتسام سعيد الزهراني</span>
+                            <span class="block text-xs text-slate-400 mt-3">التوقيع: ...................</span>
+                        </div>
+
+                        <div class="bg-white/80 p-3 rounded-2xl border border-skyLight">
+                            <span class="block text-xs text-skyDeep font-bold">مديرة المدرسة</span>
+                            <span class="block font-extrabold text-base mt-1">أمل أحمد الحربي</span>
+                            <span class="block text-xs text-slate-400 mt-3">التوقيع: ...................</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- أزرار التنقل السفلية البارزة (لا تظهر عند الطباعة) -->
+        <div class="no-print mt-8 flex items-center justify-between gap-3 bg-white p-3.5 rounded-3xl shadow-md border-2 border-skyLight">
+            <button id="btn-prev" onclick="prevPage()" class="flex items-center gap-2 bg-skyLight hover:bg-skyBright hover:text-white text-navyMain font-bold px-4 sm:px-6 py-3 rounded-2xl transition-all disabled:opacity-40 disabled:pointer-events-none">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                <span>السابقة</span>
+            </button>
+
+            <button onclick="goToPage(1)" class="flex items-center gap-2 bg-navyMain hover:bg-skyDeep text-white font-bold px-4 sm:px-6 py-3 rounded-2xl shadow transition-all">
+                <span>🏠</span>
+                <span class="hidden sm:inline">الرئيسية</span>
+            </button>
+
+            <button id="btn-next" onclick="nextPage()" class="flex items-center gap-2 bg-gradient-to-l from-skyDeep to-skyBright hover:opacity-95 text-white font-bold px-4 sm:px-6 py-3 rounded-2xl shadow transition-all disabled:opacity-40 disabled:pointer-events-none">
+                <span>التالية</span>
+                <svg class="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </main>
+
+    <!-- تذييل ثابت في جميع الصفحات (Read-only & Hardcoded - لا يظهر عند الطباعة) -->
+    <footer class="no-print bg-navyDark text-white mt-8 border-t-4 border-skyBright">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+                <div>
+                    <h4 class="font-heading font-extrabold text-lg text-goldLight">مجلة انضباطي سر تميزي</h4>
+                    <p class="text-xs sm:text-sm text-skyLight mt-1">
+                        المدرسة: <strong class="text-white">ابتدائية ١٨٢</strong> | العام الدراسي: <strong class="text-white">١٤٤٨هـ</strong>
+                    </p>
+                </div>
+                <div class="text-xs sm:text-sm text-skyLight space-y-1">
+                    <p>مديرة المدرسة: <strong class="text-white">أمل أحمد الحربي</strong></p>
+                    <p>المساعد الإداري: <strong class="text-white">ابتسام سعيد الزهراني</strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- رسالة تفاعلية لطيفة (بديل لـ alert) -->
+    <div id="toast-msg" class="no-print fixed bottom-20 left-1/2 -translate-x-1/2 z-50 hidden bg-navyMain text-white font-bold px-6 py-3 rounded-2xl shadow-2xl border-2 border-goldLight text-sm sm:text-base transition-all">
+    </div>
+
+    <script>
+        // عناوين صفحات المجلة الـ 13
+        const magazinePages = [
+            { id: 1, title: "1. الغلاف", icon: "🏫" },
+            { id: 2, title: "2. كلمة المجلة", icon: "💌" },
+            { id: 3, title: "3. أنا طالبة منضبطة", icon: "👧🏻" },
+            { id: 4, title: "4. آدابي في مدرستي", icon: "🌸" },
+            { id: 5, title: "5. سلوكي الجميل", icon: "🤝" },
+            { id: 6, title: "6. مدرستي مسؤوليتي", icon: "🌱" },
+            { id: 7, title: "7. لا للتنمر", icon: "💝" },
+            { id: 8, title: "8. بطلة الحضور", icon: "⏰" },
+            { id: 9, title: "9. تحدي السلوك", icon: "🏆" },
+            { id: 10, title: "10. اختبري معلوماتك", icon: "🧠" },
+            { id: 11, title: "11. ميثاق الطالبة", icon: "📜" },
+            { id: 12, title: "12. الخاتمة", icon: "🌟" },
+            { id: 13, title: "13. شهادة التميز", icon: "🎓" }
+        ];
+
+        let currentPage = 1;
+        const totalPages = magazinePages.length;
+
+        // بناء أزرار التنقل السريع والفهرس
+        function buildNavigation() {
+            const pillsContainer = document.getElementById('quick-nav-pills');
+            const tocGrid = document.getElementById('toc-grid');
+            pillsContainer.innerHTML = '';
+            tocGrid.innerHTML = '';
+
+            magazinePages.forEach(p => {
+                // أزرار الشريط العلوي
+                const pill = document.createElement('button');
+                pill.id = `nav-pill-${p.id}`;
+                pill.onclick = () => goToPage(p.id);
+                pill.className = `shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    p.id === currentPage
+                        ? 'bg-navyMain text-white shadow'
+                        : 'bg-skyLight/60 text-navyMain hover:bg-skyBright/30'
+                }`;
+                pill.innerHTML = `<span>${p.icon}</span><span>${p.title}</span>`;
+                pillsContainer.appendChild(pill);
+
+                // بطاقات نافذة الفهرس
+                const tocItem = document.createElement('button');
+                tocItem.onclick = () => {
+                    goToPage(p.id);
+                    toggleTocModal();
+                };
+                tocItem.className = `text-right p-3 rounded-2xl border-2 transition-all flex items-center gap-3 ${
+                    p.id === currentPage
+                        ? 'border-navyMain bg-skyLight/60 font-extrabold text-navyMain'
+                        : 'border-skyLight hover:border-skyBright bg-white font-bold text-slate-700'
+                }`;
+                tocItem.innerHTML = `<span class="text-2xl">${p.icon}</span><span>${p.title}</span>`;
+                tocGrid.appendChild(tocItem);
+            });
+        }
+
+        // الانتقال إلى صفحة محددة
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPages) return;
+            currentPage = pageNum;
+
+            // إخفاء جميع الصفحات وإظهار الصفحة المطلوبة
+            document.querySelectorAll('.mag-page').forEach(sec => sec.classList.remove('active'));
+            const target = document.getElementById(`page-${currentPage}`);
+            if (target) target.classList.add('active');
+
+            // تحديث المؤشر وشريط التقدم
+            const percent = Math.round((currentPage / totalPages) * 100);
+            document.getElementById('page-indicator').textContent = `صفحة ${currentPage} من ${totalPages}`;
+            document.getElementById('progress-percent').textContent = `${percent}%`;
+            document.getElementById('top-progress-bar').style.width = `${percent}%`;
+
+            // تحديث حالة أزرار السابق والتالي
+            document.getElementById('btn-prev').disabled = (currentPage === 1);
+            document.getElementById('btn-next').disabled = (currentPage === totalPages);
+
+            buildNavigation();
+
+            // تمرير الشريط العلوي ليظهر الزر النشط
+            const activePill = document.getElementById(`nav-pill-${currentPage}`);
+            if (activePill) {
+                activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) goToPage(currentPage + 1);
+        }
+
+        function prevPage() {
+            if (currentPage > 1) goToPage(currentPage - 1);
+        }
+
+        function toggleTocModal() {
+            const modal = document.getElementById('toc-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // إشعار لطيف عند النقر على البطاقات
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast-msg');
+            toast.textContent = msg;
+            toast.classList.remove('hidden');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2500);
+        }
+
+        function sparkleCard(el) {
+            el.classList.add('ring-4', 'ring-goldLight');
+            showToast('أحسنتِ يا بطلة! هذا سلوك الطالبة المنضبطة المتميزة ⭐');
+            setTimeout(() => {
+                el.classList.remove('ring-4', 'ring-goldLight');
+            }, 900);
+        }
+
+        // =========================================================
+        // الصفحة 9: منطق تحدي السلوك الإيجابي
+        // =========================================================
+        const challenges = [
+            "1. ألتزم بالحضور المبكر.",
+            "2. أساعد زميلتي.",
+            "3. أحافظ على نظافة فصلي.",
+            "4. أستخدم الكلمات الطيبة.",
+            "5. أحترم معلمتي.",
+            "6. ألتزم بتعليمات المدرسة.",
+            "7. أبتعد عن المشاجرات.",
+            "8. أشارك بإيجابية."
+        ];
+        let completedChallenges = new Array(challenges.length).fill(false);
+
+        function renderChallenges() {
+            const list = document.getElementById('challenge-list');
+            list.innerHTML = '';
+            challenges.forEach((text, idx) => {
+                const isDone = completedChallenges[idx];
+                const item = document.createElement('label');
+                item.className = `flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all select-none ${
+                    isDone
+                        ? 'bg-emerald-50 border-emerald-500 shadow-sm'
+                        : 'bg-white border-skyLight hover:border-skyBright'
+                }`;
+                item.innerHTML = `
+                    <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleChallenge(${idx})" class="w-6 h-6 accent-emerald-600 rounded-lg cursor-pointer">
+                    <span class="font-bold text-base sm:text-lg ${isDone ? 'text-emerald-800 line-through decoration-emerald-400' : 'text-navyMain'}">${text}</span>
+                    <span class="mr-auto text-xl">${isDone ? '🌟' : '⬜'}</span>
+                `;
+                list.appendChild(item);
+            });
+            updateChallengeProgress();
+        }
+
+        function toggleChallenge(idx) {
+            completedChallenges[idx] = !completedChallenges[idx];
+            if (completedChallenges[idx]) {
+                showToast('رائع! أضفتِ نجمة جديدة لسجل إنجازاتك ✨');
+            }
+            renderChallenges();
+        }
+
+        function updateChallengeProgress() {
+            const count = completedChallenges.filter(Boolean).length;
+            const percent = Math.round((count / challenges.length) * 100);
+            document.getElementById('challenge-percent').textContent = `${percent}%`;
+            document.getElementById('challenge-bar').style.width = `${percent}%`;
+            document.getElementById('challenge-count-label').textContent = `أنجزتِ ${count} من ${challenges.length} تحديات`;
+
+            const statusText = document.getElementById('challenge-status-text');
+            if (percent === 0) {
+                statusText.textContent = "هيا ابدئي بتحديد السلوكيات التي أنجزتِها اليوم! 🌟";
+            } else if (percent < 50) {
+                statusText.textContent = "بداية جميلة يا بطلة! استمري في التقدم 💪";
+            } else if (percent < 100) {
+                statusText.textContent = "ممتاز جداً! اقتربتِ من إكمال التحدي بالكامل 🚀";
+            } else {
+                statusText.textContent = "مبارك يا نجمة الانضباط! أكملتِ 100% من التحدي 🎉👑";
+            }
+        }
+
+        function resetChallenge() {
+            completedChallenges.fill(false);
+            renderChallenges();
+            showToast('تمت إعادة ضبط التحدي بنجاح ↺');
+        }
+
+        // =========================================================
+        // الصفحة 10: منطق اختبار اختبري معلوماتك (10 أسئلة)
+        // =========================================================
+        const quizQuestions = [
+            {
+                q: "1. الحضور المبكر يساعدني على الاستعداد لليوم الدراسي.",
+                options: ["صح", "خطأ"],
+                correct: 0,
+                explain: "نعم! الحضور المبكر يمنحكِ الهدوء والنشاط لحضور الطابور وبداية الحصص بتركيز."
+            },
+            {
+                q: "2. أحافظ على نظافة مدرستي لأنها مسؤوليتي.",
+                options: ["صح", "خطأ"],
+                correct: 0,
+                explain: "أحسنتِ! المدرسة بيتنا الثاني ونظافتها مسؤولية كل طالبة."
+            },
+            {
+                q: "3. عندما تخطئ زميلتي أسخر منها.",
+                options: ["صح", "خطأ"],
+                correct: 1,
+                explain: "إجابة موفقة! الطالبة الخلوقة لا تسخر من زميلاتها بل تساعدهن بلطف."
+            },
+            {
+                q: "4. من السلوك الإيجابي احترام المعلمة.",
+                options: ["صح", "خطأ"],
+                correct: 0,
+                explain: "رائع! احترام المعلمة والإنصات لتوجيهاتها من أجمل صفات الطالبة المتميزة."
+            },
+            {
+                q: "5. إذا شاهدت تنمراً أبلغ شخصاً مسؤولاً.",
+                options: ["صح", "خطأ"],
+                correct: 0,
+                explain: "شجاعة رائعة! إبلاغ المعلمة أو المرشدة الطلابية يحمي زميلاتنا وينشر الأمان."
+            },
+            {
+                q: "6. متى يكون الوقت الأفضل لتجهيز الحقيبة المدرسية والزي المدرسي؟",
+                options: ["في المساء قبل النوم", "بعد رنين جرس المدرسة", "أثناء الحصة الأولى"],
+                correct: 0,
+                explain: "ممتاز! تجهيز الحقيبة والزي من المساء يساعد على الاستعداد المبكر دون استعجال."
+            },
+            {
+                q: "7. ماذا أفعل إذا أردت المشاركة والإجابة داخل الفصل؟",
+                options: ["أتحدث بصوت مرتفع دون إذن", "أرفع يدي بهدوء وأستأذن من معلمتي", "أقاطع زميلتي أثناء حديثها"],
+                correct: 1,
+                explain: "أحسنتِ! الاستئذان ورفع اليد يدلان على أدبكِ واحترامكِ لنظام الفصل."
+            },
+            {
+                q: "8. كيف أتصرف إذا أخطأت في حق زميلتي دون قصد؟",
+                options: ["أتجاهلها ولا أهتم", "أعتذر لها بلطف وابتسامة", "أغضب وأبتعد"],
+                correct: 1,
+                explain: "جميل جداً! الاعتذار عند الخطأ من شيم الطالبات المهذبات."
+            },
+            {
+                q: "9. أين أضع بقايا الطعام والأوراق بعد الفسحة؟",
+                options: ["في ساحة المدرسة", "تحت الطاولة في الفصل", "في سلة المهملات المخصصة"],
+                correct: 2,
+                explain: "بارك الله فيكِ! وضع النفايات في السلة يحافظ على جمال مدرستنا."
+            },
+            {
+                q: "10. ما أثر الكلمة الطيبة والابتسامة في المدرسة؟",
+                options: ["تنشر المحبة والسعادة بين الجميع", "لا فائدة منها", "تسبب الإزعاج"],
+                correct: 0,
+                explain: "إجابة ذهبية! الكلمة الطيبة صدقة وتجعل مدرستنا مكاناً مليئاً بالمحبة."
+            }
+        ];
+
+        let userAnswers = [];
+
+        function initQuiz() {
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            document.getElementById('quiz-live-score').textContent = '0';
+            document.getElementById('quiz-result-box').classList.add('hidden');
+            renderQuiz();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizQuestions.forEach((item, qIndex) => {
+                const answeredIdx = userAnswers[qIndex];
+                const isAnswered = answeredIdx !== null;
+
+                const card = document.createElement('div');
+                card.className = 'bg-skyLight/30 rounded-3xl p-5 border-2 border-skyLight space-y-3';
+
+                let optionsHTML = `<div class="grid grid-cols-1 sm:grid-cols-${item.options.length === 2 ? '2' : '3'} gap-2.5">`;
+                item.options.forEach((opt, optIdx) => {
+                    let btnClass = 'bg-white hover:bg-skyLight border-2 border-skyBright/40 text-navyMain';
+                    let badge = '';
+
+                    if (isAnswered) {
+                        if (optIdx === item.correct) {
+                            btnClass = 'bg-emerald-500 border-emerald-600 text-white shadow-md';
+                            badge = ' ✓';
+                        } else if (optIdx === answeredIdx && optIdx !== item.correct) {
+                            btnClass = 'bg-rose-500 border-rose-600 text-white';
+                            badge = ' ✕';
+                        } else {
+                            btnClass = 'bg-white/60 border-slate-200 text-slate-400';
+                        }
+                    }
+
+                    optionsHTML += `
+                        <button onclick="selectQuizAnswer(${qIndex}, ${optIdx})" ${isAnswered ? 'disabled' : ''} class="p-3.5 rounded-2xl font-bold text-sm sm:text-base transition-all text-center ${btnClass}">
+                            ${opt}${badge}
+                        </button>
+                    `;
+                });
+                optionsHTML += `</div>`;
+
+                let feedbackHTML = '';
+                if (isAnswered) {
+                    const isCorrect = answeredIdx === item.correct;
+                    feedbackHTML = `
+                        <div class="mt-2 p-3 rounded-2xl text-sm font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'}">
+                            ${isCorrect ? '🌟 إجابة صحيحة! ' : '💡 الإجابة الصحيحة هي: (' + item.options[item.correct] + '). '}
+                            ${item.explain}
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <h3 class="text-base sm:text-lg font-extrabold text-navyMain">${item.q}</h3>
+                    ${optionsHTML}
+                    ${feedbackHTML}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectQuizAnswer(qIndex, optIdx) {
+            if (userAnswers[qIndex] !== null) return;
+            userAnswers[qIndex] = optIdx;
+
+            // حساب الدرجة
+            let score = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === quizQuestions[idx].correct) score++;
+            });
+            document.getElementById('quiz-live-score').textContent = score;
+
+            renderQuiz();
+
+            // إذا تمت الإجابة على جميع الأسئلة الـ 10
+            if (userAnswers.every(a => a !== null)) {
+                showFinalQuizResult(score);
+            }
+        }
+
+        function showFinalQuizResult(score) {
+            const box = document.getElementById('quiz-result-box');
+            const medal = document.getElementById('quiz-medal');
+            const title = document.getElementById('quiz-final-title');
+            const scoreEl = document.getElementById('quiz-final-score');
+            const enc = document.getElementById('quiz-encouragement');
+
+            scoreEl.textContent = `درجتكِ النهائية: ${score} من 10`;
+
+            if (score >= 9) {
+                medal.textContent = '👑🏆';
+                title.textContent = 'ممتازة! أنتِ نجمة الانضباط المتألقة';
+                enc.textContent = 'ما شاء الله تبارك الله! لديكِ وعي رائع بالانضباط المدرسي والسلوك الإيجابي. تفخر بكِ ابتدائية ١٨٢!';
+            } else if (score >= 7) {
+                medal.textContent = '🌟🎖️';
+                title.textContent = 'رائعة جداً يا متميزة!';
+                enc.textContent = 'نتيجة جميلة تدل على أخلاقكِ العالية وحرصكِ على الالتزام. واصلي تألقكِ!';
+            } else {
+                medal.textContent = '🌷💪';
+                title.textContent = 'محاولة جميلة يا بطلة!';
+                enc.textContent = 'تصفحي صفحات المجلة مرة أخرى لتتعلمي المزيد، ثم أعيدي الاختبار لتحققي الدرجة الكاملة!';
+            }
+
+            box.classList.remove('hidden');
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // مزامنة اسم الطالبة بين الميثاق والشهادة
+        function syncStudentName(val) {
+            const pledgeInput = document.getElementById('pledge-student-name');
+            const certInput = document.getElementById('cert-student-name');
+            if (pledgeInput && pledgeInput.value !== val) pledgeInput.value = val;
+            if (certInput && certInput.value !== val) certInput.value = val;
+        }
+
+        // التهيئة عند تحميل الصفحة
+        window.onload = function () {
+            buildNavigation();
+            renderChallenges();
+            initQuiz();
+            goToPage(1);
+        };
+    </script>
+</body>
+</html>
